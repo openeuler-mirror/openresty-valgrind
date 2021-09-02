@@ -33,6 +33,8 @@ AutoReqProv:        no
 %define zlib_prefix         %{_usr}/local/openresty/zlib
 %define pcre_prefix         %{_usr}/local/openresty/pcre
 
+%global debug_package %{nil}
+
 # Remove source code from debuginfo package.
 %define __debug_install_post \
   %{_rpmconfigdir}/find-debuginfo.sh %{?_missing_build_ids_terminate_build:--strict-build-id} %{?_find_debuginfo_opts} "%{_builddir}/%{?buildsubdir}"; \
