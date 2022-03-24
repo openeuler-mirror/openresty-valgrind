@@ -1,6 +1,6 @@
 Name:           openresty-valgrind
 Version:        1.19.3.1
-Release:        1%{?dist}
+Release:        2
 Summary:        The Valgrind debug version of OpenResty
 
 Group:          System Environment/Daemons
@@ -166,5 +166,8 @@ rm -rf %{buildroot}
 
 
 %changelog
+* Thu Mar 24 2022 yaoxin <yaoxin30@huawei.com> - 1.19.3.1-2
+- Delete release %{?dist}
+
 * Fri Jul 23 2021 Fu Changjie <fu_changjie@qq.com> 1.19.3.1-1
 - Package init with openresty-valgrind 1.19.3.1
