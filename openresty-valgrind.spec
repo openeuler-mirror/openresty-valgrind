@@ -1,6 +1,6 @@
 Name:           openresty-valgrind
 Version:        1.19.3.1
-Release:        1%{?dist}
+Release:        2%{?dist}
 Summary:        The Valgrind debug version of OpenResty
 
 Group:          System Environment/Daemons
@@ -12,6 +12,7 @@ URL:            https://openresty.org/
 
 
 Source0:        https://openresty.org/download/openresty-%{version}.tar.gz
+Patch0:         fix-clang.patch
 
 BuildRoot:      %{_tmppath}/%{name}-%{version}-%{release}-root-%(%{__id_u} -n)
 
@@ -83,11 +84,12 @@ a single box.
 %prep
 %setup -q -n "openresty-%{version}"
 
+%patch0 -p1
 
 %build
 ./configure \
     --prefix="%{orprefix}" \
-    --with-cc='ccache gcc -fdiagnostics-color=always' \
+    --with-cc="ccache $CC -fdiagnostics-color=always" \
     --with-debug \
     --with-cc-opt="-I%{zlib_prefix}/include -I%{pcre_prefix}/include -I%{openssl_prefix}/include -O0" \
     --with-ld-opt="-L%{zlib_prefix}/lib -L%{pcre_prefix}/lib -L%{openssl_prefix}/lib -Wl,-rpath,%{zlib_prefix}/lib:%{pcre_prefix}/lib:%{openssl_prefix}/lib" \
@@ -166,5 +168,8 @@ rm -rf %{buildroot}
 
 
 %changelog
+* Tue Jun 27 2023 yoo <sunyuechi@iscas.ac.cn> - 1.19.3.1-2
+- fix clang build error
+
 * Fri Jul 23 2021 Fu Changjie <fu_changjie@qq.com> 1.19.3.1-1
 - Package init with openresty-valgrind 1.19.3.1

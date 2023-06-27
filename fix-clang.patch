@@ -1,0 +1,12 @@
+diff -u -r openresty-1.19.3.1/bundle/LuaJIT-2.1-20201027/src/Makefile openresty-1.19.3.1/bundle/LuaJIT-2.1-20201027/src/Makefile
+--- openresty-1.19.3.1/bundle/LuaJIT-2.1-20201027/src/Makefile	2020-10-27 15:30:36.000000000 +0800
++++ openresty-1.19.3.1/bundle/LuaJIT-2.1-20201027/src/Makefile	2023-06-27 15:10:47.000000000 +0800
+@@ -27,7 +27,7 @@
+ DEFAULT_CC = gcc
+ #
+ # LuaJIT builds as a native 32 or 64 bit binary by default.
+-CC= $(DEFAULT_CC)
++CC ?= gcc
+ #
+ # Use this if you want to force a 32 bit build on a 64 bit multilib OS.
+ #CC= $(DEFAULT_CC) -m32
